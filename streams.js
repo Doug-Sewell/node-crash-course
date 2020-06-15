@@ -1,5 +1,12 @@
 const fs = require('fs');
 
+// Streams => Start using data, before it has finished loading.
+
+// Buffer => Chunks of data that are part of the stream. Every time
+// the buffer fills, it gets sent down the stream.
+
+
+
 //Note the second argument below is optional. You don't need to encode it if you don't want to. You coudl also use toString() on the buffer.
 const readStream = fs.createReadStream('./docs/blog2.txt', { encoding: 'utf-8'}); 
 const writeStream = fs.createWriteStream('./docs/blog3.txt');
