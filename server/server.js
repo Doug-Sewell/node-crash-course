@@ -1,11 +1,24 @@
 const http = require('http');
 const fs = require('fs');
+const _ = require('lodash');
 
 //Fires a callback function that has both 
 //a request and response object as arguments.
 const server = http.createServer((req, res) => {
-    console.log('reuest made');
-    console.log(req.url, req.method);
+
+    //lodash
+    const num = _.random(0,20);
+    console.log(num);
+
+    const greet = _.once(() => {
+        console.log('hello');
+    });
+
+    greet();
+    greet();
+
+
+
 
     //response headers give the browser some information about
     //what is coming back to it as well as handle cookies.
@@ -25,7 +38,7 @@ const server = http.createServer((req, res) => {
             path += 'about.html'
             res.statusCode = 200;
             break;
-        case '/about-me':
+        case '/about-us':
             res.statusCode = 301;
             res.setHeader('Location','/about');
             res.end();
