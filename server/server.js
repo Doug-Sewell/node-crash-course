@@ -36,11 +36,6 @@ const server = http.createServer((req, res) => {
             break;
     }
 
-
-
-
-
-
     //Then write what content you want to send
     //Send an HTML file
     fs.readFile(path, (err, data) => {
@@ -55,13 +50,6 @@ const server = http.createServer((req, res) => {
         }
 
     });
-
-
-
-
-
-
-
 });
 
 //Allows server to lsiten for requests and
