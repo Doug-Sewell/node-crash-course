@@ -1,4 +1,5 @@
 const express = require('express');
+const morgan = require('morgan'); //An NPM package for 3rd party middleware.
 
 //express app
 const app = express();
@@ -10,6 +11,10 @@ app.set('view engine','ejs');
 
 //listen for requests app
 app.listen(3000); //Assumes we want localhost for listening
+
+//middleware and static files
+app.use(express.static('public'));
+app.use(morgan('dev')); //Logs server requests for each request
 
 
 
