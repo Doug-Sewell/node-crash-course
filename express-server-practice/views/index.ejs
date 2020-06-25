@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%=title%> | Node.js Crash Course</title>
+    <title>Document</title>
 </head>
+
 <body>
-    <h1>Home</h1>
-    <h2>Your path to becoming a Node.js ninja!</h2>
-    <nav>
-        <a href="/">Homepage</a>
-        <a href="/about">About Page</a>
-    </nav>
+    <h1>Working!</h1>
+    <% if(dogs.length > 0) { %>
+    <h2>Awesome dogs!</h2>
+    <% } else { %>
+    <h2>No dogs to show.</h2>
+    <% } %>
+
+    <% if(dogs) { %>
+    <ul>
+        <% dogs.forEach(dog => { %>
+        <li><%=dog%></li>
+        <% }) %>
+    </ul>
+    <% } %>
+
+    <%- include('./partials/footer'); %>
 </body>
+
 </html>
