@@ -1,8 +1,15 @@
 const express = require('express');
 const morgan = require('morgan'); //An NPM package for 3rd party middleware.
 
+const dbURI = 'PASSWORD GOES HERE';
+
+
 //express app
 const app = express();
+
+//Connect to mongodb
+const dbURI = 'mongodb+srv://Doug:<password>@node-crash-course-asnyw.mongodb.net/<dbname>?retryWrites=true&w=majority';
+
 
 //Register view engine.
 app.set('view engine','ejs');
