@@ -1,8 +1,6 @@
 const express = require('express');
 const morgan = require('morgan'); //An NPM package for 3rd party middleware.
 
-const dbURI = 'PASSWORD GOES HERE';
-
 
 //express app
 const app = express();
