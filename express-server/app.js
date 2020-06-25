@@ -1,13 +1,16 @@
 const express = require('express');
 const morgan = require('morgan'); //An NPM package for 3rd party middleware.
-
+const mongoose = require('mongoose');
+const Blog = require('./models/blog');
 
 //express app
 const app = express();
 
 //Connect to mongodb
-const dbURI = 'mongodb+srv://Doug:<password>@node-crash-course-asnyw.mongodb.net/<dbname>?retryWrites=true&w=majority';
-
+const dbURI = /*DATABASE INFO */'';
+mongoose.connect(dbURI,{useNewUrlParser:true,useUnifiedTopology:true})
+    .then((result) => app.listen(3000))
+    .catch((err) => console.log(err));
 
 //Register view engine.
 app.set('view engine','ejs');
@@ -15,12 +18,28 @@ app.set('view engine','ejs');
 
 
 //listen for requests app
-app.listen(3000); //Assumes we want localhost for listening
 
 //middleware and static files
 app.use(express.static('public'));
 app.use(morgan('dev')); //Logs server requests for each request
 
+//Mongoose and Mongo Sandbox Routes
+app.get('/add-blog',(req,res) => {
+    const blog = new Blog({
+        title:'new blog',
+        snippet:'about my new blog',
+        body:'more about my new blog'
+    });
+
+    blog.save()
+        .then((result) => {
+            res.send(result);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+
+});
 
 
 app.get('/',(req,res) => {
