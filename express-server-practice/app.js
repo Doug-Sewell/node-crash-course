@@ -1,24 +1,22 @@
 const express = require('express');
 
 const app = express();
+app.use(express.static('./public'));
 app.set('view engine','ejs');
 app.listen(3000);
 
 app.get('/',(req,res) => {
-    const dogs = ['Wrigley','Athena','Murphy','Maisy'];
-
-    res.render('index',{dogs});
+    const books = ['Harry Potter','Lord of the Rings'];
+    res.render('index',{books});
 });
 
-app.use((req,res)=>{
-    res.render('404');
+app.get('/information',(req,res) => {
+    res.redirect(301, '/');
 });
 
-
-
-
-
-
+app.use((req,res) => {
+    res.status(404).render('404');
+});
 
 
 

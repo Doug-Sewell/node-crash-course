@@ -5,23 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
     <h1>Working!</h1>
-    <% if(dogs.length > 0) { %>
-    <h2>Awesome dogs!</h2>
-    <% } else { %>
-    <h2>No dogs to show.</h2>
-    <% } %>
-
-    <% if(dogs) { %>
-    <ul>
-        <% dogs.forEach(dog => { %>
-        <li><%=dog%></li>
-        <% }) %>
-    </ul>
-    <% } %>
+    <% if(books.length > 0) { %>
+        <h2>Awesome Books!</h2>
+        <% } else { %>
+        <h2>No books to show.</h2>
+        <% } %> 
+    
+        <% if(books) { %>
+        <ul>
+            <% books.forEach(books => { %>
+            <li><%=books%></li>
+            <% }) %>
+        </ul>
+        <% } %>
 
     <%- include('./partials/footer'); %>
 </body>
