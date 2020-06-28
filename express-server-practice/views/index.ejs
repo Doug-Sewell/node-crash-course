@@ -10,16 +10,16 @@
 
 <body>
     <h1>Working!</h1>
-    <% if(books.length > 0) { %>
-        <h2>Awesome Books!</h2>
+    <% if(todos.length > 0) { %>
+        <h2>Todos!!</h2>
         <% } else { %>
-        <h2>No books to show.</h2>
+        <h2>No Todos to show.</h2>
         <% } %> 
     
-        <% if(books) { %>
+        <% if(todos) { %>
         <ul>
-            <% books.forEach(books => { %>
-            <li><%=books%></li>
+            <% todos.forEach(todo => { %>
+            <li><%=todo.title%> | <%=todo.category%></li>
             <% }) %>
         </ul>
         <% } %>
