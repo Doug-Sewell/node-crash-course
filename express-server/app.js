@@ -7,7 +7,7 @@ const Blog = require('./models/blog');
 const app = express();
 
 //Connect to mongodb
-const dbURI = 'BLOG POST INFORMATION';
+const dbURI = 'Database Information';
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then((result) => app.listen(3000))
@@ -18,51 +18,11 @@ app.set('view engine', 'ejs');
 //app.set('views','myViews'); //App engine looks in views folder by default. This method allows you to set your own folder.
 
 
-//listen for requests app
-
 //middleware and static files
 app.use(express.static('public'));
+app.use(express.urlencoded({extended:true}));
 app.use(morgan('dev')); //Logs server requests for each request
 
-
-//Mongoose and Mongo Sandbox Routes. They were used as
-//demos in the tutorials, but I thought they were useful. Keeping them here.
-// app.get('/add-blog',(req,res) => {
-//     const blog = new Blog({
-//         title:'new blog',
-//         snippet:'about my new blog',
-//         body:'more about my new blog'
-//     });
-
-// blog.save()
-//     .then((result) => {
-//         res.send(result);
-//     })
-//     .catch((err) => {
-//         console.log(err);
-//     })
-
-// });
-
-// app.get('/all-blogs', (req, res) => {
-//     Blog.find()
-//         .then((result) => {
-//             res.send(result);
-//         })
-//         .catch((err) => {
-//             console.log(err);
-//         });
-// });
-
-// app.get('/single-blog', (req, res) => {
-//     Blog.findById('5ef52291563fcd1dbb5a8690')
-//         .then((result) => {
-//             res.send(result);
-//         })
-//         .catch((err) => {
-//             console.log(err);
-//         });
-// });
 
 
 app.get('/', (req, res) => {
@@ -88,7 +48,7 @@ app.get('/about', (req, res) => {
     //res.send('<p>About page</p>'); //automatically sets header, infers status code as well
 });
 
-//Blog routs
+//Blog routes
 app.get('/blogs', (req,res) => {
     Blog.find().sort({createdAt: -1}) //Soting by createdAt -1 will sort blog posts in order from newest to oldest.
         .then((result) => {
@@ -97,6 +57,17 @@ app.get('/blogs', (req,res) => {
         .catch((err) => {
             console.log(err);
         });
+});
+
+app.post('/blogs',(req,res) => {
+    const blog = new Blog(req.body);
+    blog.save()
+        .then((result) => {
+            res.redirect('/blogs');
+        })
+        .catch((err) => {
+            console.log(err);
+        })
 });
 
 app.get('/blogs/create', (req, res) => {
